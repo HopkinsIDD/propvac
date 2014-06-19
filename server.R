@@ -153,7 +153,7 @@ shinyServer(function(input, output) {
                          R0=input$R.opt,
                          N=input$N)$par
     n.tries <- 1    
-    while(fs.opt.vac == 1 & input$R.opt*dir.prot/input$N>1 & n.tries < 5000){
+    while(fs.opt.vac == 1 & input$R.opt*(1-dir.prot/input$N)>1 & n.tries < 5000){
       fs.opt.vac <- nlminb(start=sample(input$N,1),
                            objective=final.size.form,
                            lower=1,
@@ -204,7 +204,7 @@ shinyServer(function(input, output) {
     
     
     n.tries <- 1    
-    while(fs.mod.vac == 1 & input$R.mod*dir.prot/input$N>1 & n.tries < 5000){      
+    while(fs.mod.vac == 1 & input$R.mod*(1-dir.prot/input$N)>1 & n.tries < 5000){      
       fs.mod.vac <- nlminb(start=sample(input$N,1),
                            objective=final.size.form,
                            lower=1,
@@ -251,7 +251,7 @@ shinyServer(function(input, output) {
                          N=input$N)$par
     
     n.tries <- 1    
-    while(fs.pes.vac == 1 & input$R.pes*dir.prot/input$N>1 & n.tries < 5000){      
+    while(fs.pes.vac == 1 & input$R.pes*(1-dir.prot/input$N)>1 & n.tries < 5000){      
       fs.pes.vac <- nlminb(start=sample(input$N,1),
                            objective=final.size.form,
                            lower=1,
@@ -324,7 +324,7 @@ shinyServer(function(input, output) {
     upper4.mod <- 1
     
     polygon(x=c(lower1.mod,upper1.mod,upper1.mod,lower1.mod),
-            y=c(1.25,1.25,1.75,1.75),col=green.col,border=FALSE)
+            y=c(1.25,1.25,1.75,1.75),col=direct.prot.col,border=FALSE)
     polygon(x=c(lower2.mod,upper3.mod,upper3.mod,lower2.mod),
             y=c(1.25,1.25,1.75,1.75),col=susceptible.col,border=FALSE)
    # polygon(x=c(lower3.mod,upper3.mod,upper3.mod,lower3.mod),
