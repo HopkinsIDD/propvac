@@ -307,7 +307,8 @@ shinyServer(function(input, output) {
             y=c(0,0,0.5,0.5),col=infected.col,border=FALSE)
     
     # now cumulative cases prevented by vaccination
-    polygon(x=c(lower1.opt,upper2.opt,upper2.opt,lower1.opt),
+    cases.prev.opt <- max(fs.opt.novac - fs.opt.vac,0)/input$N
+    polygon(x=c(lower1.opt,cases.prev.opt,cases.prev.opt,lower1.opt),
           y=c(-.5,-.5,-.025,-.025),col=cases.prev.col,border=FALSE)
 
     ## moderate
@@ -333,7 +334,8 @@ shinyServer(function(input, output) {
             y=c(1.25,1.25,1.75,1.75),col=infected.col,border=FALSE)
     
     ## cumulative cases prevented
-  polygon(x=c(lower1.mod,upper2.mod,upper2.mod,lower1.mod),
+    cases.prev.mod <- max(fs.mod.novac - fs.mod.vac,0)/input$N
+    polygon(x=c(lower1.mod,cases.prev.mod,cases.prev.mod,lower1.mod),
         y=c(.75,.75,1.225,1.225),col=cases.prev.col,border=FALSE)
     
     ## pessimistic
@@ -358,7 +360,8 @@ shinyServer(function(input, output) {
     polygon(x=c(lower4.pes,upper4.pes,upper4.pes,lower4.pes),
             y=c(2.5,2.5,3,3),col=infected.col,border=FALSE)
     
-    polygon(x=c(lower1.pes,upper2.pes,upper2.pes,lower1.pes),
+    cases.prev.pes <- max(fs.pes.novac - fs.pes.vac,0)/input$N
+    polygon(x=c(lower1.pes,cases.prev.pes,cases.prev.pes,lower1.pes),
         y=c(2,2,2.475,2.475),col=cases.prev.col,border=FALSE)
   #  mtext(text="estimated \n proportion \n protected",at=prop.prot,side=3)
     

@@ -82,7 +82,7 @@ mainPanel(
                 <li>Infected: This is the proportion of people who are unvaccinated who will ultimately get infected in an epidemic</li>
                 </ul>")             
              ),
-    tabPanel("Proportion Protected",
+    tabPanel("Experimental",
              HTML("<h3>WARNING: This application is under development. Please consult the <a href=mailto:azman@jhu.edu?Subject=Cholera%20App>developer</a> before using this for decision making.</h3>"),
              plotOutput('my.plot'),
              "The interface between yellow and red in each corresponds to the estimate of 1-1/R:",
