@@ -1,3 +1,3 @@
 propvac
 =======
-very basic shiny app for exploring the proportion of population that needs to be protected for different assumed values of the repproductive number
+A dynamic web application created to assist with understanding how oral cholera vaccine campaigns may protect a population. 
