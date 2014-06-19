@@ -55,7 +55,7 @@ shinyUI(fluidPage(
                         max=1)          
            ),
            "Source code can be found ",
-           a("here", href="https://github.com/scottyaz/propvac"),
+           a("here", href="https://github.com/HopkinsIDD/propvac"),
            br(),  
            "Brought to you by the",
            a(" Infectious Disease Dynamics Group",href="http://iddynamics.jhsph.edu/"),
