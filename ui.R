@@ -15,7 +15,7 @@ shinyUI(fluidPage(
                         min=0
                         ),
            numericInput("N1",
-                        label=helpText("Number vaccinated with 1-dose"),
+                        label=helpText("Number vaccinated with only 1-dose"),
                         value=5000,
                         min=0),
            numericInput("N2",
