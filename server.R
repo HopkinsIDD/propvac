@@ -7,8 +7,15 @@
 
 library(shiny)
 
-shinyServer(function(input, output) {
-   
+shinyServer(function(input, output,session) {
+
+  # this could be the way to dyanmically bound N1 and N2 inputs but doesn't seem to be working
+  #  output$N1in <- renderUI({
+  #     numericInput("N1", "testing", min=0, max=input$N-input$N2,value=10000)
+  #   })
+  #
+  
+  ## main plot
   output$my.plot <- renderPlot({
      
     ## proportion protected
