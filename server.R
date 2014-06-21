@@ -113,6 +113,7 @@ shinyServer(function(input, output,session) {
     
   })
   
+  ## this is the main plot that shows the 3 divisions of people and cum. cases averted by vaccine
   output$ind.dir.plot <- renderPlot({
     
     ## will work with raw numbers first then can normailize if we want
@@ -279,6 +280,8 @@ shinyServer(function(input, output,session) {
     par(oma=c(0,0,3,0),mar=c(5.1,5.5,4.1,2.1))
     plot(-100,-100,xlim=c(0,1),ylim=c(-.5,3.25),axes=F,xlab="proportion of population",ylab="")
     axis(1)
+    abline(v=seq(0,1,by=.1),lty=3,col="grey")
+    
     
     susceptible.col = rgb(202,178,214,alpha=200,maxColorValue=255)
     infected.col = rgb(227,26,28,alpha=200,maxColorValue=255)
@@ -317,6 +320,7 @@ shinyServer(function(input, output,session) {
     cases.prev.opt <- max(fs.opt.novac - fs.opt.vac,0)/input$N
     polygon(x=c(lower1.opt,cases.prev.opt,cases.prev.opt,lower1.opt),
           y=c(-.5,-.5,-.025,-.025),col=cases.prev.col,border=FALSE)
+
 
     ## moderate
     lower1.mod<- 0
@@ -386,7 +390,9 @@ shinyServer(function(input, output,session) {
     mtext(text="",side=2,at=2.75,cex=.8,line=-2,las=1)
     #abline(v=prop.prot,lty=2,lwd=2,col=1)    
   
-    ## stop signs
+
+
+    ## stop signs and goal posts
     prop.prot <- (input$N1*input$VE1 + input$N2*input$VE2)/input$N
     prop.need.prot <- c(1-1/input$R.opt,1-1/input$R.mod,1-1/input$R.pes)
     ## 
@@ -395,6 +401,16 @@ shinyServer(function(input, output,session) {
     sign.mod <- ifelse(prop.prot < prop.need.prot[2], "red",ifelse(prop.prot<  prop.need.prot[2]+sd.prop.need.prot,"yellow","green"))
     sign.pes <- ifelse(prop.prot < prop.need.prot[3], "red",ifelse(prop.prot <  prop.need.prot[3]+sd.prop.need.prot,"yellow","green"))
   
+
+    ## goal posts
+    arrows(x0=0,x1=1,y0=.6,angle=90,code=3,length=.02)
+    arrows(x0=0,x1=1,y0=1.85,angle=90,code=3,length=.02)
+    arrows(x0=0,x1=1,y0=3.1,angle=90,code=3,length=.02)
+    points(rep(0,3),c(.6,1.85,3.1),pch=20,col="red",cex=1.8)
+    points(prop.need.prot,c(.6,1.85,3.1),pch=20,col="yellow",cex=1.8)
+    points(prop.need.prot+sd.prop.need.prot,c(.6,1.85,3.1),pch=20,col="green",cex=1.8)
+    points(rep(prop.prot,3),c(.6,1.85,3.1),pch=4,col="black",cex=1.8)
+
     plot(-100,-100,xlim=c(0,1),ylim=c(-.5,3.25),axes=F,xlab="",ylab="")
     points(c(.4,.4,.4),c(0,1.25,2.5),pch=19,col=c(sign.opt,sign.mod,sign.pes),cex=15)
     par(fig=c(0, 1, 0, 1), oma=c(0, 0, 0, 0), mar=c(0, 0, 0, 0), new=TRUE)
