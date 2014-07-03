@@ -389,19 +389,16 @@ shinyServer(function(input, output,session) {
     mtext(text="cases \n prevented",side=2,at=2.25,cex=.8,line=-2,las=1)
     mtext(text="",side=2,at=2.75,cex=.8,line=-2,las=1)
     #abline(v=prop.prot,lty=2,lwd=2,col=1)    
-  
-
 
     ## stop signs and goal posts
     prop.prot <- (input$N1*input$VE1 + input$N2*input$VE2)/input$N
     prop.need.prot <- c(1-1/input$R.opt,1-1/input$R.mod,1-1/input$R.pes)
     ## 
     sd.prop.need.prot <- prop.need.prot*input$pct.uncer
-    sign.opt <- ifelse(prop.prot < prop.need.prot[1], "red",ifelse(prop.prot <  prop.need.prot[1]+sd.prop.need.prot,"yellow","green"))
-    sign.mod <- ifelse(prop.prot < prop.need.prot[2], "red",ifelse(prop.prot<  prop.need.prot[2]+sd.prop.need.prot,"yellow","green"))
-    sign.pes <- ifelse(prop.prot < prop.need.prot[3], "red",ifelse(prop.prot <  prop.need.prot[3]+sd.prop.need.prot,"yellow","green"))
+    sign.opt <- ifelse(prop.prot < prop.need.prot[1], "red",ifelse(prop.prot <  prop.need.prot[1]+sd.prop.need.prot[1],"yellow","green"))
+    sign.mod <- ifelse(prop.prot < prop.need.prot[2], "red",ifelse(prop.prot<  prop.need.prot[2]+sd.prop.need.prot[2],"yellow","green"))
+    sign.pes <- ifelse(prop.prot < prop.need.prot[3], "red",ifelse(prop.prot <  prop.need.prot[3]+sd.prop.need.prot[3],"yellow","green"))
   
-
     ## goal posts
     arrows(x0=0,x1=1,y0=.6,angle=90,code=3,length=.02)
     arrows(x0=0,x1=1,y0=1.85,angle=90,code=3,length=.02)
